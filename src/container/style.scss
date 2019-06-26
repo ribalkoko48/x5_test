@@ -1,0 +1,50 @@
+.jobs {
+  padding: 30px;
+  max-width: 960px;
+  margin: 0 auto;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+  }
+
+  nav div:first-child {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 20px;
+  }
+
+  &__buttons button {
+    width: 200px;
+  }
+
+  &__buttons button:first-child {
+    margin-right: 20px;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__cards_row {
+    justify-content: flex-start;
+  }
+
+  &__cards .card {
+    width: 240px;
+    margin: 10px;
+  }
+
+  &__cards_row .card {
+    width: 100%;
+  }
+}
