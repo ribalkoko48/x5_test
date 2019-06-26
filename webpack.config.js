@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        publicPath: '/x5_text/',
+        publicPath: '/',
         path: path.resolve(__dirname, './dist/')
     },
     module: {
@@ -49,7 +49,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'style.css'
+            filename: 'x5_test/style.css'
         })
     ],
     devServer: {

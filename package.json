@@ -4,7 +4,7 @@
   "description": "x5_test",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --host 192.168.0.105",
+    "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
   "author": "RubalkoKo",
