@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import {getJobs} from "../Actions/index"
 import Card from "../components/Card/index";
 import './style.scss'
+import Loader from "../components/Loader/index";
 
 class AppContainer extends PureComponent {
 
@@ -25,54 +26,47 @@ class AppContainer extends PureComponent {
         }))
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.handleResizeListener)
-
-        this.handleResizeListener()
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResizeListener)
-    }
-
-    handleResizeListener = () => {
-        if (window.innerWidth <= 420) { // проверка на "column" не нужна, render только один раз сработает
-            this.setState({
-                searchValue: 'column'
-            })
-        }
-
-        // P.S. можно сделать логику с фиксацией последнего состояния, до авто переключения
-    }
-
     state = {
-        searchValue: 'row',
-        data: null
+        searchValue: '',
+        data: null,
+        isLoaded: false
     }
 
     renderCards() {
-        const {searchValue, data} = this.state
-        const isRowContent = searchValue === 'row'
+        const {data} = this.state
 
         return data.map((item, index) => (
             <Card key={item.id} index={index} {...item} />
         ))
     }
 
-    setResponseDate = (data) => {
+    setResponseDate = (data, searchValue) => {
         this.setState({
-            data
+            isLoaded: false,
+            data,
+            searchValue
         })
     }
 
-    handleChangeSearchValue = (event) => {
+    handleSubmit = (event) => {
         const searchValue = event.target.value
 
-        getJobs(searchValue, this.setResponseDate)
+        this.setState({
+                isLoaded: true
+            }, () => getJobs(searchValue, this.setResponseDate)
+        )
+    }
+
+    handleReset = () => {
+        this.setState({
+            isLoaded: false,
+            searchValue: '',
+            data: null
+        })
     }
 
     render() {
-        const {searchValue, data} = this.state
+        const {searchValue, data, isLoaded} = this.state
         const cardsClassName = classnames('underground__cards', {
             underground__cards_row: searchValue === 'row'
         })
@@ -84,11 +78,10 @@ class AppContainer extends PureComponent {
                         label="Введите поле поиска"
                         className={clsx(this.classes.textField, this.classes.dense)}
                         margin="dense"
-                        onChange={this.handleChangeSearchValue}
                     />
                     <div className="jobs__buttons">
-                        <Button variant="contained" color="primary">Найти</Button>
-                        <Button variant="contained" color="secondary">Сброс</Button>
+                        <Button onClick={this.handleSubmit} variant="contained" color="primary">Найти</Button>
+                        <Button onClick={this.handleReset} variant="contained" color="secondary">Сброс</Button>
                     </div>
                 </nav>
                 <div className={cardsClassName}>{data && data.length
@@ -98,6 +91,7 @@ class AppContainer extends PureComponent {
                         : null
                 }
                 </div>
+                <Loader active={isLoaded} />
             </div>
         )
     }

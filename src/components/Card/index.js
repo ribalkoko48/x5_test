@@ -77,7 +77,7 @@ class Card extends PureComponent {
     }
 
     render() {
-        const {isRowContent, title, created_at, description, url, index} = this.props
+        const {isRowContent, title, created_at, description, company_logo, index} = this.props
         const {isCardVisible, isDescriptionVisible} = this.state
         const cardClassName = classnames('card',
             {
@@ -89,16 +89,19 @@ class Card extends PureComponent {
 
         return (
             <div key={isRowContent + index} className={cardClassName}>
-                <img className={imageClassName} src={url} alt="Italian Trulli" />
+                <img className={imageClassName} src={company_logo} alt="Italian Trulli" />
                 <div className="card__infoBlock">
-                    <div className="card__infoBlockHeader" >
-                        <div className="card__infoBlockTitle"><span>{title}</span> {isRowContent &&
-                        <span className={dateColorClassName}>{created_at}</span>}</div>
+                    <div className="card__infoBlockHeader">
+                        <div className="card__infoBlockTitle">
+                            <div>{title}</div>
+                            {isRowContent && <div className={dateColorClassName}>{created_at}</div>}
+                        </div>
                         <div onClick={() => this.setState((prevState) => ({isDescriptionVisible: !prevState.isDescriptionVisible}))}>
-                            <div>Описание: <span style={{color: 'blue', cursor: 'pointer'}}>{isDescriptionVisible ? 'скрыть' : 'показать'}</span> </div>
+                            <div>Описание: <span
+                                style={{color: 'blue', cursor: 'pointer'}}>{isDescriptionVisible ? 'скрыть' : 'показать'}</span></div>
                         </div>
                         <AnimateHeight
-                            height={isDescriptionVisible ? 'auto' : 0 }
+                            height={isDescriptionVisible ? 'auto' : 0}
                         >
                             <div className="card__infoBlockDescription" dangerouslySetInnerHTML={{__html: description}} />
                         </AnimateHeight>

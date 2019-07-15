@@ -10,54 +10,26 @@
     transform: rotate(0deg) translate(0, 0);
   }
 
-  .T-Centralen {
-    background: url("/images/T-Centralen.png") center no-repeat;
-    background-size: contain;
-  }
-
-  .Bagarmossen {
-    background: url("/images/Bagarmossen.png") center no-repeat;
-    background-size: contain;
-  }
-
-  .Stadion {
-    background: url("/images/Stadion.png") center no-repeat;
-    background-size: contain;
-
-  }
-
-  .SolnaCentrum {
-    background: url("/images/SolnaCentrum.png") center no-repeat;
-    background-size: contain;
-  }
-
-  .Thorildsplan {
-    background: url("/images/Thorildsplan.png") center no-repeat;
-    background-size: contain;
-  }
-
-  .Kungsträdgården {
-    background: url("/images/Kungstradgarden.png") center no-repeat;
-    background-size: contain;
-  }
-
   &_row {
+    overflow: hidden;
     display: flex;
-    margin-bottom: 40px;
-  }
-
-  &_row &__infoBlock {
-    margin: 0 0 20px 20px;
+    border-radius: 8px;
+    flex-flow: column;
+    border: 1px solid gainsboro;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background:  #f3eaea;
   }
 
   &__image {
-    width: 240px;
     height: 160px;
   }
 
   &__image_row {
     height: 100px;
     min-width: 150px;
+    margin: 20px auto;
   }
 
   &__infoBlock {
@@ -88,6 +60,8 @@
   &__infoBlockTitle {
     font-size: 24px;
     line-height: 31px;
+    display: flex;
+    flex-flow: column;
   }
 
   &__infoBlockTitle > span {
