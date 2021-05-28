@@ -14,5 +14,6 @@ export const getJobs = (searchValue = 'new+york', setResponseDate) => {
         })
         .catch(function (ex) {
             console.log('parsing failed', ex)
+            setResponseDate(null, searchValue)
         })
 }

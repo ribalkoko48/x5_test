@@ -1,13 +1,12 @@
 import React, {PureComponent} from 'react'
-import PropTypes from 'prop-types'
 import {Button, TextField} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import classnames from 'classnames'
 import clsx from 'clsx'
-import {getJobs} from "../Actions/index"
-import Card from "../components/Card/index";
+import {getJobs} from "../Actions"
+import Card from "../components/Card";
+import Loader from "../components/Loader";
 import './style.scss'
-import Loader from "../components/Loader/index";
 
 class AppContainer extends PureComponent {
 
@@ -40,11 +39,10 @@ class AppContainer extends PureComponent {
         ))
     }
 
-    setResponseDate = (data, searchValue) => {
+    setResponseDate = (data) => {
         this.setState({
             isLoaded: false,
-            data,
-            searchValue
+            data
         })
     }
 

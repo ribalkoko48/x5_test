@@ -10,7 +10,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         publicPath: '',
-        path: path.resolve(__dirname, './dist/')
+        path: path.resolve(__dirname, '../')
     },
     module: {
         rules: [
@@ -42,7 +42,7 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new CleanWebpackPlugin([`./dist`]),
+        new CleanWebpackPlugin([`../`]),
         new CopyWebpackPlugin([{from: `./public/`, to: './'}]),
         new HtmlWebpackPlugin({
             filename: 'index.html',
